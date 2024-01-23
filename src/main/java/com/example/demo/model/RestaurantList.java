@@ -13,6 +13,8 @@ public class RestaurantList {
 	private String restaurantName;
 	private String restaurantLocation;
 	
+	//this is demo updated by aman
+	
 	
 	
 	
