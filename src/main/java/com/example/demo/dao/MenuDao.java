@@ -7,5 +7,5 @@ import com.example.demo.model.Menu;
 
 
 public interface MenuDao extends JpaRepository<Menu, Integer> {
-                                                                                                                                     
+                                                                                                                              
 }

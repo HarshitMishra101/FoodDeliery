@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToMany;
 @Entity
 public class Menu {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int menuId;
 	private int restaurantId;
 	private String itemName;
@@ -19,9 +19,7 @@ public class Menu {
 	public int getMenuId() {
 		return menuId;
 	}
-	public void setMenuId(int menuId) {
-		this.menuId = menuId;
-	}
+	
 	public int getRestaurantId() {
 		return restaurantId;
 	}
