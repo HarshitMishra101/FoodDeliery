@@ -17,16 +17,16 @@ public class MenuDBOperationRunner implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		Menu m1 = new Menu(2, "Paneer masala", 200);
-		Menu m2 = new Menu(1, "Paneer roll", 220);
-		Menu m3 = new Menu(6, "Chicken pasta", 350);
-		Menu m4 = new Menu(3, "Mushroom Masala", 150);
-		Menu m5 = new Menu(2, "Paneer masala", 200);
-		Menu m6 = new Menu(10, "Palak Paneer", 200);
+		Menu m1 = new Menu(1, "Paneer masala", 200);
+		Menu m2 = new Menu(2, "Paneer roll", 220);
+		Menu m3 = new Menu(3, "Chicken pasta", 350);
+		Menu m4 = new Menu(4, "Mushroom Masala", 150);
+		Menu m5 = new Menu(5, "Paneer masala", 200);
+		Menu m6 = new Menu(6, "Palak Paneer", 200);
 		Menu m7 = new Menu(7, "Chicken noodles", 200);
 		Menu m8 = new Menu(8, "Chicken roll", 250);
-		Menu m9 = new Menu(2, "Dosa", 50);
-		Menu m10 = new Menu(2, "Paneer", 200);
+		Menu m9 = new Menu(9, "Dosa", 50);
+		Menu m10 = new Menu(10, "Paneer", 200);
 		List<Menu> l1 = new ArrayList<>();
 		l1.add(m1);
 		l1.add(m2);
