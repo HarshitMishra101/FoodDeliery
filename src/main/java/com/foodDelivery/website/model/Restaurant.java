@@ -2,6 +2,8 @@ package com.foodDelivery.website.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
@@ -16,15 +18,21 @@ public class Restaurant {
 	private String location;
 	private Long contactNo;
 	private String emailId;
-	@JsonManagedReference
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
 			name = "Restaurant_Menu",
 			joinColumns = @JoinColumn(name = "restaurant_id"),
 			inverseJoinColumns = @JoinColumn(name = "foodItem_id"))
 	private List<FoodItems> foodItemsInRestaurant;
+	@JsonIgnore
 	@OneToMany(mappedBy = "restaurant")
     private List<RestaurantMenu> restaurantMenuList;
+	@OneToMany(mappedBy = "restaurant")
+    private List<Cart> carts;
+	
+	
+	
 	public int getRestaurantId() {
 		return restaurantId;
 	}
@@ -61,6 +69,14 @@ public class Restaurant {
 	public void setFoodItemsInRestaurant(List<FoodItems> foodItemsInRestaurant) {
 		this.foodItemsInRestaurant = foodItemsInRestaurant;
 	}
+	public List<RestaurantMenu> getRestaurantMenuList() {
+		return restaurantMenuList;
+	}
+	public void setRestaurantMenuList(List<RestaurantMenu> restaurantMenuList) {
+		this.restaurantMenuList = restaurantMenuList;
+	}
+	
+	
 	
 	
 }

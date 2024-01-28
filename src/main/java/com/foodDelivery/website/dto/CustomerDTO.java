@@ -6,4 +6,5 @@ public class CustomerDTO {
 	private String address;
 	private Long mobilenumber;
 	private String emailId;
+	
 }
