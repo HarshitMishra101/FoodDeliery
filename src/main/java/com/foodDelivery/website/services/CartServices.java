@@ -1,9 +1,7 @@
 package com.foodDelivery.website.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.foodDelivery.website.dto.CartDTO;
 import com.foodDelivery.website.exception.GlobalException;
-import com.foodDelivery.website.exception.GlobalExceptionHandler;
 import com.foodDelivery.website.model.AddToCartRequest;
 import com.foodDelivery.website.model.Cart;
 import com.foodDelivery.website.model.Customer;
@@ -70,7 +67,7 @@ public class CartServices {
 	public ResponseEntity<List<CartDTO>> getCartByCustomerId(int id) throws GlobalException{
 		
 		if(cartRepo.findCartByCustomerUserId(id) != null) {
-			List<CartDTO> cartDTOList = cartRepo.findCartByCustomerUserId(id).stream().map(this::convertToDTO).collect(Collectors.toList());
+			List<CartDTO> cartDTOList = cartRepo.findCartByCustomerUserId(id).stream().map(this::convertToDTO).toList();
 			return new ResponseEntity<>(cartDTOList, HttpStatus.OK);
 		}
 		else {

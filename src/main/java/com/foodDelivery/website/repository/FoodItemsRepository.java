@@ -1,6 +1,5 @@
 package com.foodDelivery.website.repository;
 
-import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

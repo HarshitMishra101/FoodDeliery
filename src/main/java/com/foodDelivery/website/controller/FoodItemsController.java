@@ -9,14 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.foodDelivery.website.dto.FoodItemsDTO;
-import com.foodDelivery.website.dto.RestaurantDTO;
 import com.foodDelivery.website.dto.RestaurantMenuDTO;
 import com.foodDelivery.website.model.FoodItems;
-import com.foodDelivery.website.model.Restaurant;
-import com.foodDelivery.website.model.RestaurantMenu;
-import com.foodDelivery.website.repository.FoodItemsRepository;
-import com.foodDelivery.website.repository.RestaurantMenuRepository;
 import com.foodDelivery.website.services.FoodItemsService;
 import com.foodDelivery.website.services.RestaurantMenuService;
 
