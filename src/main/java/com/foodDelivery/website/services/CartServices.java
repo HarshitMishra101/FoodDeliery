@@ -67,11 +67,11 @@ public class CartServices {
 			throw new GlobalException("The cart does not exist");
 		}
 	}		
-	public ResponseEntity<?> getCartByCustomerId(int id) throws GlobalException{
+	public ResponseEntity<List<CartDTO>> getCartByCustomerId(int id) throws GlobalException{
 		
 		if(cartRepo.findCartByCustomerUserId(id) != null) {
 			List<CartDTO> cartDTOList = cartRepo.findCartByCustomerUserId(id).stream().map(this::convertToDTO).collect(Collectors.toList());
-			return new ResponseEntity<>(cartDTOList.toString(), HttpStatus.OK);
+			return new ResponseEntity<>(cartDTOList, HttpStatus.OK);
 		}
 		else {
 			throw new GlobalException("The cart does not exist");

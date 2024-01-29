@@ -44,7 +44,7 @@ public class CartController {
 		return cartService.searchCartById(id);
 	}
 	@GetMapping("/searchcustomer/{id}")
-	public ResponseEntity<?> searchCartByCustomerId(@PathVariable int id) throws GlobalException{
+	public ResponseEntity<List<CartDTO>> searchCartByCustomerId(@PathVariable int id) throws GlobalException{
 		return cartService.getCartByCustomerId(id);
 	}
 	
