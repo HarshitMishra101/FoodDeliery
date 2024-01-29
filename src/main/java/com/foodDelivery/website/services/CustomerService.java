@@ -13,6 +13,7 @@ import com.foodDelivery.website.repository.CustomerRepository;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,12 +40,15 @@ public class CustomerService {
 		customerDTO.setCustomerName(customer.getUsername());
 		return customerDTO;
 	}
-//	@Autowired
-//	private CustomerRepository customerRepository;
-//
-//	public boolean login(String username,String password) {
-//		AppUser user=customerRepository.findbyUserName(username);
-//		return user != null && user.getPassword().equals(password);
-//
-//}
+	public boolean validateCustomer(String email, String password) {
+		Customer customer = cusRepo.findByEmailId(email);
+		if(customer.equals(null)) {
+			return false;
+		}
+		else {
+			return customer.getPassword().equals(password);
+		}
+		
+	}
+
 }

@@ -26,6 +26,8 @@ public class Cart {
             inverseJoinColumns = @JoinColumn(name = "fooditem_id")
     )
     private List<FoodItems> fooditems;
+    private int cartPrice;
+    
 	public Long getCartId() {
 		return cartId;
 	}
@@ -50,6 +52,24 @@ public class Cart {
 	public void setFooditems(List<FoodItems> fooditems) {
 		this.fooditems = fooditems;
 	}
+	public void calculateCartPrice() {
+		if(fooditems !=null && !fooditems.isEmpty()) {
+			int totalPrice = fooditems.stream().mapToInt(FoodItems::getItemPrice).sum();
+			this.cartPrice = totalPrice;
+		}
+		else {
+			this.cartPrice = 0;
+		}
+	}
+	public int getCartPrice() {
+		return cartPrice;
+	}
+	public void setCartPrice(int cartPrice) {
+		this.cartPrice = cartPrice;
+	}
+	
+	
+	
 
 	
 

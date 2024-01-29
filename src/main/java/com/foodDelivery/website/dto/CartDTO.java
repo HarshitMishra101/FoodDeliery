@@ -9,6 +9,11 @@ public class CartDTO {
 	private RestaurantDTO restaurantDTO;
 	private CustomerDTO customerDTO;
 	private List<FoodItems> foodItems;
+	private int cartPrice;
+	
+	public int getCartPrice() {
+		return cartPrice;
+	}
 	public Long getCartId() {
 		return cartId;
 	}
@@ -35,12 +40,22 @@ public class CartDTO {
 		// TODO Auto-generated method stub
 		this.cartId = cartId;
 	}
-
+	public void calculateCartPrice() {
+		if(foodItems !=null && !foodItems.isEmpty()) {
+			int totalPrice = foodItems.stream().mapToInt(FoodItems::getItemPrice).sum();
+			this.cartPrice = totalPrice;
+		}
+		else {
+			this.cartPrice = 0;
+		}
+	}
 	@Override
 	public String toString() {
 		return "Cart [cartId=" + cartId + ", restaurant=" + restaurantDTO + ", customer=" + customerDTO
-				+ ", foodItems=" + foodItems + "]";
+				+ ", foodItems=" + foodItems + ", cartPrice=" + cartPrice + "]";
 	}
+
+	
 
 	
 	

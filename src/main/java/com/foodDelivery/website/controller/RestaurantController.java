@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.foodDelivery.website.dto.RestaurantDTO;
 import com.foodDelivery.website.dto.RestaurantMenuDTO;
+import com.foodDelivery.website.exception.GlobalException;
 import com.foodDelivery.website.model.FoodItems;
 import com.foodDelivery.website.model.Restaurant;
 import com.foodDelivery.website.services.RestaurantMenuService;
@@ -30,7 +31,7 @@ public class RestaurantController {
 		return resService.getAllRestaurant();
 	}
 	@GetMapping("/findrestaurant/{id}")
-	public ResponseEntity<List<FoodItems>> getItemByRestaurant(@PathVariable int id){
+	public ResponseEntity<List<FoodItems>> getItemByRestaurant(@PathVariable int id) throws GlobalException{
 		return resService.getRestaurants(id);
 	}
 	

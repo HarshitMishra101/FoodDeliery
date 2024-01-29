@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.foodDelivery.website.dto.RestaurantDTO;
+import com.foodDelivery.website.exception.GlobalException;
 import com.foodDelivery.website.model.FoodItems;
 import com.foodDelivery.website.model.Restaurant;
 import com.foodDelivery.website.repository.RestaurantRepository;
@@ -24,9 +25,14 @@ public class RestaurantServices {
 		List<RestaurantDTO> resList = resRepo.findAll().stream().map(this::convertToDTO).collect(Collectors.toList());
 		return new ResponseEntity<>(resList, HttpStatus.OK);
 	}
-	public ResponseEntity<List<FoodItems>> getRestaurants(int restaurantId){
+	public ResponseEntity<List<FoodItems>> getRestaurants(int restaurantId) throws GlobalException{
 		Optional<Restaurant> resList = resRepo.findById(restaurantId);
-		return new ResponseEntity<>(resList.orElse(null).getFoodItemsInRestaurant(), HttpStatus.OK);
+		if (resList.isPresent()) {
+            return new ResponseEntity<>(resList.get().getFoodItemsInRestaurant(), HttpStatus.OK);
+        }
+		else {
+			throw new GlobalException("The following restaurant does not exist");
+		}
 	}
 	
 	public RestaurantDTO convertToDTO(Restaurant res) {

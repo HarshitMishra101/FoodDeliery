@@ -85,6 +85,7 @@ public class CartServices {
 		cartDTO.setCustomerDTO(customerService.convertToDTO(cart.getCustomer()));
 		cartDTO.setFoodItems(cart.getFooditems());
 		cartDTO.setCartId(cart.getCartId());
+		cartDTO.calculateCartPrice();;
 		return cartDTO;
 	}
 }

@@ -6,4 +6,6 @@ import com.foodDelivery.website.model.Customer;
 
 public interface CustomerRepository extends JpaRepository<Customer , Integer> {
 //	Customer findbyUserName(String userName);
+	Customer findByEmailId(String email);
+	
 }
