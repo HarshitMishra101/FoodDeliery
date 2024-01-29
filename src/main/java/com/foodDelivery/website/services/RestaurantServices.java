@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.foodDelivery.website.dto.RestaurantDTO;
+import com.foodDelivery.website.model.FoodItems;
 import com.foodDelivery.website.model.Restaurant;
 import com.foodDelivery.website.repository.RestaurantRepository;
 
@@ -23,9 +24,9 @@ public class RestaurantServices {
 		List<RestaurantDTO> resList = resRepo.findAll().stream().map(this::convertToDTO).collect(Collectors.toList());
 		return new ResponseEntity<>(resList, HttpStatus.OK);
 	}
-	public ResponseEntity<List<Restaurant>> getRestaurants(int restaurantId){
+	public ResponseEntity<List<FoodItems>> getRestaurants(int restaurantId){
 		Optional<Restaurant> resList = resRepo.findById(restaurantId);
-		return new ResponseEntity<>(resList.map(Collections::singletonList).orElse(Collections.emptyList()), HttpStatus.OK);
+		return new ResponseEntity<>(resList.orElse(null).getFoodItemsInRestaurant(), HttpStatus.OK);
 	}
 	
 	public RestaurantDTO convertToDTO(Restaurant res) {
@@ -34,6 +35,7 @@ public class RestaurantServices {
 		resDTO.setLocation(res.getLocation());
 		resDTO.setRestaurantName(res.getRestaurantName());
 		resDTO.setRestaurantId(res.getRestaurantId());
+		
 		return resDTO;
 		
 	}

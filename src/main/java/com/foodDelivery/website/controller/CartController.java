@@ -24,7 +24,7 @@ import com.foodDelivery.website.model.CartFoodItems;
 import com.foodDelivery.website.model.Customer;
 import com.foodDelivery.website.model.FoodItems;
 import com.foodDelivery.website.model.Restaurant;
-import com.foodDelivery.website.services.CartFoodItemsService;
+
 import com.foodDelivery.website.services.CartServices;
 
 @RestController
@@ -32,8 +32,8 @@ import com.foodDelivery.website.services.CartServices;
 public class CartController {
 	@Autowired
 	CartServices cartService;
-	@Autowired
-	CartFoodItemsService cfiService;
+//	@Autowired
+//	CartFoodItemsService cfiService;
 	@PostMapping("/add")
 	public ResponseEntity<String> addToCart(@RequestBody AddToCartRequest request){
 		cartService.addToCart(request);

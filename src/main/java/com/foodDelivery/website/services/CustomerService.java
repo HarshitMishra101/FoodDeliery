@@ -1,25 +1,17 @@
 package com.foodDelivery.website.services;
 
-<<<<<<< HEAD
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.foodDelivery.website.model.AppUser;
 
 import com.foodDelivery.website.repository.CustomerRepository;
 
-public class CustomerService {
-@Autowired
-private CustomerRepository customerRepository;
 
-public boolean login(String username,String password) {
-	AppUser user=customerRepository.findbyUserName(username);
-	return user != null && user.getPassword().equals(password);
-	
-}
 	
 
 
-=======
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +39,12 @@ public class CustomerService {
 		customerDTO.setCustomerName(customer.getUsername());
 		return customerDTO;
 	}
->>>>>>> d9269de907cd4212f64f2dec46a95053ecf9d195
+//	@Autowired
+//	private CustomerRepository customerRepository;
+//
+//	public boolean login(String username,String password) {
+//		AppUser user=customerRepository.findbyUserName(username);
+//		return user != null && user.getPassword().equals(password);
+//
+//}
 }
