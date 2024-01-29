@@ -53,6 +53,11 @@ public class FoodItems {
 	public void setRestaurantsMenu(List<Restaurant> restaurantsMenu) {
 		this.restaurantsMenu = restaurantsMenu;
 	}
+	@Override
+	public String toString() {
+		return "FoodItems [id=" + id + ", itemName=" + itemName + ", itemPrice=" + itemPrice + "]";
+	}
+	
 	
 	
 }

@@ -33,6 +33,11 @@ public class RestaurantDTO {
 	public void setContactNo(Long contactNo) {
 		this.contactNo = contactNo;
 	}
+	@Override
+	public String toString() {
+		return "RestaurantDTO [restaurantId=" + restaurantId + ", restaurantName=" + restaurantName + ", location="
+				+ location + ", contactNo=" + contactNo + "]";
+	}
 	
 	
 	

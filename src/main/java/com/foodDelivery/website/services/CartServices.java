@@ -3,12 +3,14 @@ package com.foodDelivery.website.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.foodDelivery.website.dto.CartDTO;
 import com.foodDelivery.website.exception.GlobalException;
 import com.foodDelivery.website.exception.GlobalExceptionHandler;
 import com.foodDelivery.website.model.AddToCartRequest;
@@ -34,16 +36,11 @@ public class CartServices {
 	RestaurantRepository resRepo;
 	@Autowired
 	FoodItemsRepository foodrepo;
-//	@Transactional
-//	public ResponseEntity<String> addToCart(int customerId, int restaurantId, List<FoodItems> foodItems){
-//		Cart cart = new Cart();
-//		cart.setCustomerId(customerId);
-//		cart.setRestaurantId(restaurantId);
-//		cart.setFooditems(foodItems);
-//		cartRepo.save(cart);
-//		return new ResponseEntity<>("Success", HttpStatus.CREATED);
-//		
-//	}
+	@Autowired
+	RestaurantServices resService;
+	@Autowired
+	CustomerService customerService;
+
 	@Transactional
 	public void addToCart(AddToCartRequest request) {
 		Cart cart = new Cart();
@@ -70,16 +67,25 @@ public class CartServices {
 			throw new GlobalException("The cart does not exist");
 		}
 	}		
-	public ResponseEntity<List<Cart>> getCartByCustomerId(int id) throws GlobalException{
+	public ResponseEntity<?> getCartByCustomerId(int id) throws GlobalException{
 		
 		if(cartRepo.findCartByCustomerUserId(id) != null) {
-			return new ResponseEntity<>(cartRepo.findCartByCustomerUserId(id), HttpStatus.OK);
+			List<CartDTO> cartDTOList = cartRepo.findCartByCustomerUserId(id).stream().map(this::convertToDTO).collect(Collectors.toList());
+			return new ResponseEntity<>(cartDTOList.toString(), HttpStatus.OK);
 		}
 		else {
 			throw new GlobalException("The cart does not exist");
 		}
 		
 		
+	}
+	public CartDTO convertToDTO(Cart cart) {
+		CartDTO cartDTO = new CartDTO();
+		cartDTO.setRestaurantDTO(resService.convertToDTO(cart.getRestaurant()));
+		cartDTO.setCustomerDTO(customerService.convertToDTO(cart.getCustomer()));
+		cartDTO.setFoodItems(cart.getFooditems());
+		cartDTO.setCartId(cart.getCartId());
+		return cartDTO;
 	}
 }
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.foodDelivery.website.dto.CartDTO;
 import com.foodDelivery.website.exception.GlobalException;
 import com.foodDelivery.website.exception.GlobalExceptionHandler;
 import com.foodDelivery.website.model.AddToCartRequest;
@@ -43,7 +44,7 @@ public class CartController {
 		return cartService.searchCartById(id);
 	}
 	@GetMapping("/searchcustomer/{id}")
-	public ResponseEntity<List<Cart>> searchCartByCustomerId(@PathVariable int id) throws GlobalException{
+	public ResponseEntity<?> searchCartByCustomerId(@PathVariable int id) throws GlobalException{
 		return cartService.getCartByCustomerId(id);
 	}
 	
