@@ -3,6 +3,7 @@ package com.foodDelivery.website.model;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
@@ -13,13 +14,14 @@ public class FoodItems {
 	private int id;	
 	private String itemName;
 	private int itemPrice;
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToMany(mappedBy = "fooditems")
 	private List<Cart> cart = new ArrayList<>();
 	@JsonBackReference
 	@ManyToMany(mappedBy = "foodItemsInRestaurant")
 	private List<Restaurant> restaurantsMenu = new ArrayList<>();
 	@OneToMany(mappedBy = "foodItem")
+	@JsonIgnore
     private List<RestaurantMenu> restaurantMenuList;
 	public int getId() {
 		return id;
@@ -51,6 +53,11 @@ public class FoodItems {
 	public void setRestaurantsMenu(List<Restaurant> restaurantsMenu) {
 		this.restaurantsMenu = restaurantsMenu;
 	}
+	@Override
+	public String toString() {
+		return "FoodItems [id=" + id + ", itemName=" + itemName + ", itemPrice=" + itemPrice + "]";
+	}
+	
 	
 	
 }

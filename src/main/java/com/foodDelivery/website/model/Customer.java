@@ -3,6 +3,7 @@ package com.foodDelivery.website.model;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
@@ -14,9 +15,9 @@ public class Customer extends AppUser{
 	private String address;
 	private Long mobilenumber;
 	private String emailId;
-	@JsonBackReference
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Cart> carts = new ArrayList<>();
+	@OneToMany(mappedBy = "customer")
+    private List<Cart> carts;
+	
 	public String getCustomerFirstName() {
 		return customerFirstName;
 	}
@@ -47,12 +48,7 @@ public class Customer extends AppUser{
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-	public List<Cart> getCarts() {
-		return carts;
-	}
-	public void setCarts(List<Cart> carts) {
-		this.carts = carts;
-	}
+	
 	
 	
 }
