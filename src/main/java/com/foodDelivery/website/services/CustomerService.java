@@ -41,12 +41,12 @@ public class CustomerService {
 		return customerDTO;
 	}
 	public boolean validateCustomer(String email, String password) {
-		Customer customer = cusRepo.findByEmailId(email);
-		if(customer.equals(null)) {
+		Optional<Customer> customer = cusRepo.findByEmailId(email);
+		if(customer.isEmpty()) {
 			return false;
 		}
 		else {
-			return customer.getPassword().equals(password);
+			return customer.get().getPassword().equals(password);
 		}
 		
 	}

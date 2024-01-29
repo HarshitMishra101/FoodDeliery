@@ -24,7 +24,7 @@ public class CustomerDTO {
 	}
 	@Override
 	public String toString() {
-		return "CustomerDTO [customerId=" + customerId + ", customerName=" + customerName + ", address=" + address
+		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", address=" + address
 				+ "]";
 	}
 	
